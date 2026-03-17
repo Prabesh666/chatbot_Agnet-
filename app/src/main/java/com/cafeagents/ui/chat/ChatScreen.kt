@@ -8,11 +8,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ChatScreen(navController: NavController) {
     Scaffold(
         topBar = {
-            SmallTopAppBar(title = { Text("Chat") })
+            TopAppBar(title = { Text("Chat") })
         },
         bottomBar = {
             // Bottom bar implementation (e.g., text input)
