@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.cafeagents.app-debug-51:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.cafeagents.app-main-53:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.cafeagents.app-debug-51:/drawable_ic_launcher.xml.flat",
+        "source": "com.cafeagents.app-main-53:/drawable/ic_launcher.xml"
+    }
+]
