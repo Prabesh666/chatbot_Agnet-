@@ -52,12 +52,12 @@ fun HistoryScreen(navController: NavController) {
                 },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(Icons.Default.ChevronLeft, contentDescription = "Back", tint = Color.White, modifier = Modifier.size(32.dp))
+                        Icon(Icons.Default.KeyboardArrowLeft, contentDescription = "Back", tint = Color.White)
                     }
                 },
                 actions = {
-                    IconButton(onClick = { /* TODO */ }) {
-                        Icon(Icons.Default.DirectionsBus, contentDescription = "History Icon", tint = Color.White)
+                    IconButton(onClick = { navController.navigate("profile") }) {
+                        Icon(Icons.Default.Person, contentDescription = "Profile", tint = Color.White)
                     }
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = Color.Black)

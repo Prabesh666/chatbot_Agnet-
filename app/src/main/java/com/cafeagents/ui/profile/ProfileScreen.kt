@@ -39,17 +39,17 @@ fun ProfileScreen(navController: NavController) {
         topBar = {
             CenterAlignedTopAppBar(
                 title = { 
-                    Text("Profile", fontWeight = FontWeight.Bold, fontSize = 20.sp, color = Color.Black)
+                    Text("Profile", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
                 },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(Icons.Default.KeyboardArrowLeft, contentDescription = "Back", tint = Color.Black, modifier = Modifier.size(32.dp))
+                        Icon(Icons.Default.KeyboardArrowLeft, contentDescription = "Back")
                     }
                 },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = Color.White)
+                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = MaterialTheme.colorScheme.surface)
             )
         },
-        containerColor = Color(0xFFF2F2F2)
+        containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f)
     ) { padding ->
         Column(
             modifier = Modifier
@@ -57,27 +57,36 @@ fun ProfileScreen(navController: NavController) {
                 .padding(padding),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(24.dp))
 
             // Profile Image (Circular)
-            Box(
-                modifier = Modifier
-                    .size(100.dp)
-                    .clip(CircleShape)
-                    .background(Color.LightGray)
+            Surface(
+                modifier = Modifier.size(100.dp),
+                shape = CircleShape,
+                color = MaterialTheme.colorScheme.secondaryContainer,
+                tonalElevation = 2.dp
             ) {
                 Icon(
                     imageVector = Icons.Default.Person,
                     contentDescription = null,
-                    modifier = Modifier.fillMaxSize().padding(20.dp),
-                    tint = Color.White
+                    modifier = Modifier.fillMaxSize().padding(24.dp),
+                    tint = MaterialTheme.colorScheme.onSecondaryContainer
                 )
             }
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            Text("John Smith", fontSize = 22.sp, fontWeight = FontWeight.Bold, color = Color.Black)
-            Text("john.smith@example.com", fontSize = 14.sp, color = Color.Gray)
+            Text(
+                text = "John Smith",
+                style = MaterialTheme.typography.headlineSmall,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.onSurface
+            )
+            Text(
+                text = "john.smith@example.com",
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
 
             Spacer(modifier = Modifier.height(32.dp))
 
@@ -85,12 +94,12 @@ fun ProfileScreen(navController: NavController) {
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 20.dp),
-                shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
-                elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
+                    .padding(horizontal = 16.dp),
+                shape = RoundedCornerShape(24.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+                elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
             ) {
-                Column {
+                Column(modifier = Modifier.padding(vertical = 8.dp)) {
                     options.forEachIndexed { index, option ->
                         ProfileOptionRow(option) {
                             if (option.title == "Log Out") {
@@ -103,7 +112,7 @@ fun ProfileScreen(navController: NavController) {
                             Divider(
                                 modifier = Modifier.padding(horizontal = 16.dp),
                                 thickness = 0.5.dp,
-                                color = Color(0xFFEEEEEE)
+                                color = MaterialTheme.colorScheme.outlineVariant
                             )
                         }
                     }
@@ -119,26 +128,26 @@ fun ProfileOptionRow(option: ProfileOption, onClick: () -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .clickable(onClick = onClick)
-            .padding(vertical = 18.dp, horizontal = 16.dp),
+            .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
             imageVector = option.icon,
             contentDescription = null,
-            tint = Color.Gray,
-            modifier = Modifier.size(22.dp)
+            tint = option.color.copy(alpha = 0.7f),
+            modifier = Modifier.size(24.dp)
         )
         Spacer(modifier = Modifier.width(16.dp))
         Text(
             text = option.title,
-            fontSize = 15.sp,
+            style = MaterialTheme.typography.bodyLarge,
             color = option.color,
             modifier = Modifier.weight(1f)
         )
         Icon(
             imageVector = Icons.Default.ChevronRight,
             contentDescription = null,
-            tint = Color.LightGray,
+            tint = MaterialTheme.colorScheme.outlineVariant,
             modifier = Modifier.size(20.dp)
         )
     }
